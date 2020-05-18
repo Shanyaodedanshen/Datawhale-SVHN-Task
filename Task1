@@ -8,14 +8,13 @@ some tricks for competition and something interesting.
 Comparation among using SmoothL1/IoU/GIoU/DIoU/CIoU Loss.
 
 (2)Multiscale methods for little object detection:
-original FPN;
-SNIP/SNIPER;
-like the method using feature map with different stride in SSD;
-stitcher;
-empty convolution;
-FPN improvement;
-ThunderNet;
-Libra R-CNN(IoU-balanced Sampling+Balanced Feature Pyramid+Balanced L1 Loss).
+(2.1)original FPN (Conventional: e.g., Haar+Adaboost; 'Hog+SVM' in DPM);
+(2.2)SNIP/SNIPER (SNIPER+Faster RCNN-ResNet101 increase efficiency ,and is 4% better than YOLOv4);
+(2.3)like the method using feature map with different stride in SSD;
+(2.4)stitcher;
+(2.5)empty convolution (TridentNet：Receptive field~ object size, convolution kernel with larger void rate detects larger target);
+(2.6)FPN improvement (PANet; ThunderNet (SNet+ Context Enhancement Module (CEM, compressed RPN)+ Spatial Attention Module); 
+                  Libra R-CNN(IoU-balanced Sampling+Balanced Feature Pyramid+Balanced L1 Loss));
 
 (3)some cutting-edge technology:
 YOLOv4.
