@@ -1,0 +1,40 @@
+Firstly, in my onpinion, it's better to use the recognition model, i.e., SSD, YOLO, etc. The following depiction is listed as 
+some tricks for competition and something interesting.
+
+(0)Recommended Paper:
+'Object Detection in 20 Years: A Survey'.
+
+(1)From the level of Regression Loss:
+Comparation among using SmoothL1/IoU/GIoU/DIoU/CIoU Loss.
+
+(2)Multiscale methods for little object detection:
+original FPN;
+SNIP/SNIPER;
+like the method using feature map with different stride in SSD;
+stitcher;
+empty convolution;
+FPN improvement;
+ThunderNet;
+Libra R-CNN(IoU-balanced Sampling+Balanced Feature Pyramid+Balanced L1 Loss).
+
+(3)some cutting-edge technology:
+YOLOv4.
+
+(4)state-of-the-art model:
+Cascade R-CNN.
+
+(5)data processing:
+mixup;
+one-hot;
+scale optimization.
+
+(6)lightweight:
+MobileNet;
+shuffleNet;
+GhostNet;
+model pruning & compression.
+
+(7) Other: multi-stage, Scale Normalization for training-RPN, deeper backbone, DCN, Softer-NMS, RoI Align, using cluster to get size 
+of anchors.
+
+To be continued...
