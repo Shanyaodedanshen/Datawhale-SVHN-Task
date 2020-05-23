@@ -1,0 +1,3 @@
+Mask RCNN-benchmark will be used as baseline.
+In addition, a mchar2COCO.py is needed for this, I have written it, and will put it
+here tomorrow.
