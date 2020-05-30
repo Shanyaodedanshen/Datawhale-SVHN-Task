@@ -1,0 +1,29 @@
+2020-05-29 12:33:13,766 maskrcnn_benchmark.utils.miscellaneous INFO: Saving labels mapping into output\labels.json
+2020-05-29 12:33:13,814 maskrcnn_benchmark.trainer INFO: Start training
+Traceback (most recent call last):
+File "tools/train_net.py", line 201, in
+main()
+File "tools/train_net.py", line 194, in main
+model = train(cfg, args.local_rank, args.distributed)
+File "tools/train_net.py", line 94, in train
+arguments,
+File "C:\Users\OceanOptic\maskrcnn-benchmark\maskrcnn_benchmark\engine\trainer.py", line 85, in do_train
+loss_dict = model(images, targets)
+File "C:\Users\OceanOptic\Anaconda3\envs\test\lib\site-packages\torch\nn\modules\module.py", line 493, in call
+result = self.forward(*input, **kwargs)
+File "C:\Users\OceanOptic\Anaconda3\envs\test\lib\site-packages\apex-0.1-py3.6.egg\apex\amp_initialize.py", line 204, in new_fwd
+File "C:\Users\OceanOptic\maskrcnn-benchmark\maskrcnn_benchmark\modeling\detector\generalized_rcnn.py", line 50, in forward
+proposals, proposal_losses = self.rpn(images, features, targets)
+File "C:\Users\OceanOptic\Anaconda3\envs\test\lib\site-packages\torch\nn\modules\module.py", line 493, in call
+result = self.forward(*input, **kwargs)
+File "C:\Users\OceanOptic\maskrcnn-benchmark\maskrcnn_benchmark\modeling\rpn\rpn.py", line 159, in forward
+return self._forward_train(anchors, objectness, rpn_box_regression, targets)
+File "C:\Users\OceanOptic\maskrcnn-benchmark\maskrcnn_benchmark\modeling\rpn\rpn.py", line 178, in _forward_train
+anchors, objectness, rpn_box_regression, targets
+File "C:\Users\OceanOptic\maskrcnn-benchmark\maskrcnn_benchmark\modeling\rpn\loss.py", line 115, in call
+labels, regression_targets = self.prepare_targets(anchors, targets)
+File "C:\Users\OceanOptic\maskrcnn-benchmark\maskrcnn_benchmark\modeling\rpn\loss.py", line 86, in prepare_targets
+matched_targets.bbox, anchors_per_image.bbox
+File "C:\Users\OceanOptic\maskrcnn-benchmark\maskrcnn_benchmark\modeling\box_coder.py", line 45, in encode
+targets_dx = wx * (gt_ctr_x - ex_ctr_x) / ex_widths
+RuntimeError: The size of tensor a (0) must match the size of tensor b (214830) at non-singleton dimension 0
