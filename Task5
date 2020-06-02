@@ -1,0 +1,67 @@
+Yolo v4在自己的数据集上的训练
+
+数据集制作
+
+一、Yolo v4的安装
+官方代码库的更新太频繁了，索性直接克隆一版，地址：
+
+https://github.com/AlexeyAB/darknet.git
+
+整个过程不要太简单，依次安装 CUDA=10.0、CuDNN>7.0、OpenCV，最后克隆代码，make -j8一键搞定。
+
+实在不济，还有一大把的博客参考，比如：
+
+https://blog.csdn.net/ly_twt/article/details/105748280
+
+二、下载预训练模型
+github太慢，Google drive无法访问？不要仅，百度网盘已经有大佬搬运过了，谢谢大佬！
+
+https://blog.csdn.net/yapifeitu/article/details/105756274
+
+链接：https://pan.baidu.com/s/1XrcPHdp2_4c-dKge2Guw4w
+提取码：xsxb
+1
+2
+暂时还不直到Ubuntu下怎么下载百度云文件，之前的Ubuntu版百度云不能用了。心塞中。。。
+
+二、训练
+官方文档：https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects
+
+0. 准备
+预训练权重文件 yolov4.conv.137，百度云在上边。
+
+1. 创建配置文件 yolov4-obj.cfg
+直接复制 yolov4-custom.cfg 并重命名为 yolov4-obj.cfg。文件名可根据爱好，后边一致即可。
+
+然后对文件做以下修改：
+
+修改batch为 batch=64
+修改subdivisions为subdivisions=16
+修改max_batches为classes*2000，即分类数乘2000，但不能小于 4000。如三类 max_batches=6000
+修改steps为max_batches的80%和90%，即 step=4800,5400
+修改网络大小 width=416 height=416或 32的整数倍
+修改3个[yolo]层中的 classes=80为自己数据的分类数，如 classes=3
+修改每一个[yolo]层之前的[convolutional]层中的filters=255为 filters=(classes+5)*3，需要注意的是只需要修改[yolo]层之前的最后一个[convolutional]层，即只修改3个，整个文件中共有110个。如 三类中filters=24
+当使用 [Gaussian_yolo]层时，修改每一个 [Gaussian_yolo] 层之前 [convolutional] 层中的 filter=57为 filter=(classes + 9)*3，共有3个[Gaussian_yolo] 层。如三分类中 filter=36
+2. 创建文件 obj.names
+在data目录下创建obj.names文件，每行一个物体类别名称。
+
+3. 创建文件 obj.data
+在 cfg 目录中创建 obj.data 文件，内容如下：
+
+classes= 3
+# train.txt的路径
+train = train.txt
+valid = test.txt
+names = data/obj.names
+1
+2
+3
+4
+5
+路径根据自己具体情况修改。
+
+4. 开始训练
+./darknet detector train data/obj.data yolo-obj.cfg yolov4.conv.137
+
+——引用自 CSDN 蜗牛、Gray
